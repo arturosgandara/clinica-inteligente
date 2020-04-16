@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+
+<odoo>
+	<data>
+		<!-- Magento configuration -->
+		<record id="magento_configure_form" model="ir.ui.view">
+			<field name="name">magento.configure.form</field>
+			<field name="model">magento.configure</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Magento Connection" class="o_mob">
+					<header>
+						<button name="test_connection"
+							type='object' icon="fa-pencil-square-o" class="oe_highlight o_wow o_mob_test" string='Test Connection'/>
+					</header>
+						<sheet>
+							<div class="oe_button_box" name="button_box">
+								<button name="toggle_active" type="object" class="oe_stat_button" icon="fa-check">
+									<field name="active" widget="boolean_button" options='{"terminology": "active"}'/>
+								</button>
+							</div>
+							<field name="connection_status" invisible="True"/>
+							<div class="label label-success pull-left" attrs="{'invisible': [('connection_status','!=', True)]}">
+								success
+							</div>
+							<div class="label label-danger pull-left"
+								attrs="{'invisible': ['|',('connection_status','!=', False),('status','==', '')]}">
+								error
+							</div>
+
+							<h3><field name="status"/></h3>
+							<div class="oe_horizontal_separator oe_clear ">
+								<separator string="Magento API Settings"/>
+							</div>
+							<group>
+								<label for="name"/>
+								<b class="o_form_required"><field name="name" colspan="4" placeholder="Example: http://mymagento.com"/></b>
+								<field name="credential"/>
+								<field name="correct_mapping"/>
+							</group>
+							<notebook>
+								<page string="API Credentials" attrs="{'invisible': [('credential','!=', True)]}">
+									<group>
+										<group>
+											<label for="user"/>
+											<div >
+												<b class="o_address_street"><field name="user" placeholder="Example: magentouser"/></b>
+											</div>
+										</group>
+										<group>
+											<label for="pwd"/>
+											<div>
+												<b class="o_address_city"><field name="pwd" placeholder="Example: password"/></b>
+											</div>
+										</group>
+									</group>
+								</page>
+								<page string="Sales Settings" attrs="{'invisible': [('credential','!=', True)]}">
+									<div class="oe_horizontal_separator oe_clear">
+										<separator string="Sales Orders Related Settings"/>
+									</div>
+									<group>
+										<group>
+											<label for="notify"/>
+											<b><field name="notify"/></b>
+										</group>
+										<group>
+											<label for="state"/>
+											<b><field name="state" readonly="1"/></b>
+										</group>
+										<group>
+											<label for="inventory_sync"/>
+											<b><field name="inventory_sync"/></b>
+										</group>
+									</group>
+								</page>
+								<page string="Default Settings" attrs="{'invisible': [('credential','!=', True)]}">
+									<div class="oe_horizontal_separator oe_clear">
+										<separator string="Default Settings"/>
+									</div>
+									<group>
+										<group>
+											<field name="store_id" readonly="1"/>
+											<field name="website_id" widget="selection"/>
+										</group>
+									</group>
+									<group>
+										<group>
+											<label for="language"/>
+											<b><field name="language" required="1" widget="selection"/></b>
+										</group>
+										<group>
+											<label for="category"/>
+											<b><field name="category" required="1" widget="selection"/></b>
+										</group>
+										<group>
+											<label for="warehouse_id"/>
+											<b><field name="warehouse_id" required="1" widget="selection"/></b>
+											<field name="location_id" widget="selection" readonly='1	'/>
+										</group>
+									</group>
+								</page>
+							</notebook>
+						</sheet>
+						<div class="oe_chatter">
+							<field name="message_follower_ids" widget="mail_followers"/>
+							<field name="message_ids" widget="mail_thread" options='{"thread_level": 1}'/>
+						</div>
+					</form>
+				</field>
+			</record>
+
+		<record id="magento_configure_tree" model="ir.ui.view">
+			<field name="name">magento.configure.tree</field>
+			<field name="model">magento.configure</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Magento Connection" class="o_mob">
+					<field name="name"/>
+					<field name="user"/>
+					<field name="active"/>
+					<field name="create_date"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="magento_configure_search" model="ir.ui.view">
+			<field name="name">magento.configure.search</field>
+			<field name="model">magento.configure</field>
+			<field name="arch" type="xml">
+				<search string="MOB">
+					<filter string="Inactive Connection" name="inactive" domain="[('active','=',False)]" help="Inactive Connection"/>
+					<filter string="Successful" name="success" domain="[('connection_status','=',True)]" help="Successful Connection"/>
+					<filter string="Error" name="error" domain="[('connection_status','=',False)]" help="Error in Connection"/>
+				</search>
+			</field>
+		</record>
+
+		<record id="magento_configure_tree_action" model="ir.actions.act_window">
+			<field name="name">Magento Connection</field>
+			<field name="res_model">magento.configure</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create oe_link">
+					Click to define a new magento connection.
+				</p>
+				<p style="color:#008080">
+					At first create user on Magento or use any existing user.
+								And then Define those credentials for magento connection.
+				</p>
+				<a href="https://webkul.com/blog/odoo-bridge-for-magento-v2/"
+						target="_blank"
+						style="background-color:#263238;margin-left:80px;font-size:em"
+						class="btn btn-primary"
+						title="Need help on Configuration." >
+					<i class="fa fa-info-circle"></i>
+					Learn about magento odoo connector configuration.
+				</a>
+			</field>
+			<field name="view_id" ref="magento_configure_tree"/>
+			<field name="search_view_id" ref = "magento_configure_search"/>
+		</record>
+	</data>
+</odoo>

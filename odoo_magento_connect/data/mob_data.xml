@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+
+<odoo>
+    <data noupdate="0">
+        <function model="magento.configure" name="mob_upgrade_hook"/>
+        <!-- After installation of the module, open the related menu -->
+        <record id="action_client_mob_menu" model="ir.actions.client">
+            <field name="name">Open Mob Menu</field>
+            <field name="tag">reload</field>
+            <field name="params" eval="{'menu_id': ref('magento_parent_menu')}"/>
+        </record>
+        <record id="base.open_menu" model="ir.actions.todo">
+            <field name="action_id" ref="action_client_mob_menu"/>
+            <field name="state">open</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <function model="magento.configure" name="_mob_def_setting" id="_mob_def_setting"/>
+    </data>
+</odoo>

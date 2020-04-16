@@ -1,0 +1,38 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+,,,,,,,
+access_magento_configure_user,Configurantion User,model_magento_configure,group_bridge_user,1,0,0,0
+access_magento_customers_user,Customer Mapping User,model_magento_customers,group_bridge_user,1,0,0,0
+access_wk_order_mapping_user,Order Mapping User,model_wk_order_mapping,group_bridge_user,1,0,0,0
+access_magento_region_user,Region Mapping User,model_magento_region,group_bridge_user,1,0,0,0
+access_magento_attribute_user,Attribute Mapping User,model_magento_product_attribute,group_bridge_user,1,0,0,0
+access_product_value_user,Attribute Value Mapping User,model_magento_product_attribute_value,group_bridge_user,1,0,0,0
+access_magento_template_user,Template Mapping User,model_magento_product_template,group_bridge_user,1,1,0,0
+access_magento_product_user,Product Mapping User,model_magento_product,group_bridge_user,1,1,0,0
+access_magento_category_user,Category Mapping User,model_magento_category,group_bridge_user,1,1,0,0
+access_magento_sync_history_user,Sync History User,model_magento_sync_history,group_bridge_user,1,0,1,0
+access_magento_attribute_set_user,Magento Attribute Set User,model_magento_attribute_set,group_bridge_user,1,0,1,0
+access_magento_website_user,Magento Website User,model_magento_website,group_bridge_user,1,0,0,0
+access_magento_store_user,Magento Store User,model_magento_store,group_bridge_user,1,0,0,0
+access_magento_store_view_user,Magento Store View User,model_magento_store_view,group_bridge_user,1,0,0,0
+access_mob_dashboard_user,MOB Dashboard User,model_mob_dashboard,group_bridge_user,1,0,0,0
+,,,,,,,
+access_magento_configure_manager,Configurantion Manager,model_magento_configure,group_magento_openerp,1,1,1,1
+access_magento_customers_manager,Customer Mapping Manager,model_magento_customers,group_magento_openerp,1,1,1,1
+access_wk_order_mapping_manager,Order Mapping Manager,model_wk_order_mapping,group_magento_openerp,1,1,1,1
+access_magento_region_manager,Region Mapping Manager,model_magento_region,group_magento_openerp,1,1,1,1
+access_magento_product_attribute_manager,Attribute Mapping Manager,model_magento_product_attribute,group_magento_openerp,1,1,1,1
+access_magento_product_value_manager,Attribute Value Mapping Manager,model_magento_product_attribute_value,group_magento_openerp,1,1,1,1
+access_magento_product_template_manager,Template Mapping Manager,model_magento_product_template,group_magento_openerp,1,1,1,1
+access_magento_product_manager,Product Mapping Manager,model_magento_product,group_magento_openerp,1,1,1,1
+access_magento_category_manager,Category Mapping Manager,model_magento_category,group_magento_openerp,1,1,1,1
+access_magento_sync_history_manager,Sync History Manager,model_magento_sync_history,group_magento_openerp,1,1,1,1
+access_magento_attribute_set_manager,Magento Attribute Set Manager,model_magento_attribute_set,group_magento_openerp,1,1,1,1
+access_magento_website_manager,Magento Website Manager,model_magento_website,group_magento_openerp,1,1,1,1
+access_magento_store_manager,Magento Store Manager,model_magento_store,group_magento_openerp,1,1,1,1
+access_magento_store_view_manager,Magento Store View Manager,model_magento_store_view,group_magento_openerp,1,1,1,1
+access_mob_dashboard_manager,MOB Dashboard Manager,model_mob_dashboard,group_magento_openerp,1,1,1,1
+,,,,,,,
+access_magento_product_template_public,Template Mapping Public,model_magento_product_template,,1,1,0,0
+access_magento_product_public,Product Mapping Public,model_magento_product,,1,1,0,0
+access_magento_category_public,Category Mapping Public,model_magento_category,,1,1,0,0
+access_magento_website_public,Magento Website Public,model_magento_website,,1,1,0,0

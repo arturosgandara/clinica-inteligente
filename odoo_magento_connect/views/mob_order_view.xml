@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+
+<odoo>
+	<data>
+
+		<!-- Magento and erp Sale Order  Mapping-->
+
+		<record id="map_order_form" model="ir.ui.view">
+            <field name="name">wk.order.mapping.form</field>
+            <field name="model">wk.order.mapping</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Order Mapping" create="false" edit="false"	>
+	                <group>
+						<field name="name" readonly="1"/>
+						<field name="ecommerce_channel" readonly="1"/>
+					</group>
+					<group>
+						<field name="erp_order_id" readonly="1"/>
+						<field name="ecommerce_order_id" readonly="1"/>
+					</group>
+				</form>
+			</field>
+        </record>
+
+		<record id="map_order_tree" model="ir.ui.view">
+            <field name="name">wk.order.mapping.tree</field>
+            <field name="model">wk.order.mapping</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree create="false" string="Magento Order Mapping">
+					<field name="id"/>
+					<field name="name"/>
+					<field name="ecommerce_channel"/>
+					<field name="erp_order_id"/>
+					<field name="ecommerce_order_id"/>
+					<field name="order_status"/>
+					<field name="is_invoiced"/>
+					<field name="is_shipped"/>
+				</tree>
+			</field>
+        </record>
+
+		<!-- Search View for Magento Orders  -->
+		<record id="magento_orders_search" model="ir.ui.view">
+			<field name="name">wk.order.mapping.search</field>
+			<field name="model">wk.order.mapping</field>
+			<field name="arch" type="xml">
+				<search string="MOB">
+					<field name="name" filter_domain="['|',('name','ilike',self),('ecommerce_channel','ilike',self)]"/>
+					<field string="Magento Id" name="ecommerce_order_id" />
+					<field string="Order Name" name="erp_order_id" />
+				</search>
+			</field>
+		</record>
+
+		<record id="magento_order_tree_action" model="ir.actions.act_window">
+            <field name="name">Magento Orders Mapping</field>
+            <field name="res_model">wk.order.mapping</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="map_order_tree"/>
+	        <field name="search_view_id" ref = "magento_orders_search"/>
+	        <field name="domain">[("ecommerce_channel", '=', 'magento')]</field>
+        </record>
+    </data>
+</odoo>

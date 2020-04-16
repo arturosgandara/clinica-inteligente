@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+
+<odoo>
+	<data>
+        <!--~~====================== Product Mapping ======================~~~-->
+		<record id="map_product_form" model="ir.ui.view">
+            <field name="name">magento.product.form</field>
+            <field name="model">magento.product</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Product Mapping" create="false" edit="false" >
+                	<group>
+						<field name="pro_name" readonly="1"/>
+						<field name="oe_product_id" readonly="1"/>
+						<field name="mag_product_id" readonly="1"/>
+						<field name="need_sync" readonly="1"/>
+					</group>
+				</form>
+			</field>
+        </record>
+
+		<record id="map_product_tree" model="ir.ui.view">
+            <field name="name">magento.product.tree</field>
+            <field name="model">magento.product</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree create="false" string="Product Mapping" decoration-danger="need_sync=='Yes'">
+					<field name="id"/>
+					<field name="pro_name"/>
+					<field name="oe_product_id"/>
+					<field name="mag_product_id"/>
+					<field name="created_by" readonly="1"/>
+					<field name="create_date" readonly="1"/>
+					<field name="write_date" readonly="1"/>
+					<field name="need_sync"/>
+				</tree>
+			</field>
+        </record>
+
+			<!-- Search View for Magento Product  -->
+		<record id="magento_product_search" model="ir.ui.view">
+			<field name="name">magento.product.search</field>
+			<field name="model">magento.product</field>
+			<field name="arch" type="xml">
+				<search string="MOB">
+					<field name="pro_name" filter_domain="[('pro_name','ilike',self)]"/>
+					<field name="oe_product_id"/>
+					<field name="mag_product_id"/>
+					<group expand="0" string="Group By">
+						<filter string="Need Sync" name="needsync" domain="[]" context="{'group_by':'need_sync'}" />
+						<filter string="Created By" name="createby" domain="[]" context="{'group_by':'created_by'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record id="magento_product_tree_action" model="ir.actions.act_window">
+            <field name="name">Magento product Mapping</field>
+            <field name="res_model">magento.product</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="map_product_tree"/>
+	        <field name="search_view_id" ref = "magento_product_search"/>
+        </record>
+
+    </data>
+</odoo>

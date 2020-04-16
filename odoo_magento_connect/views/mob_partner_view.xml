@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+
+<odoo>
+	<data>
+
+		<!--========== Magento Customer Mapping ===============-->
+
+		<record id="map_customer_form" model="ir.ui.view">
+            <field name="name">magento.customers.form</field>
+            <field name="model">magento.customers</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Customers Mapping" create="false" edit="false">
+                	<group>
+						<field name="cus_name" readonly="1"/>
+						<field name="oe_customer_id" readonly="1"/>
+						<field name="mag_customer_id" readonly="1"/>
+						<field name="mag_address_id" readonly="1"/>
+					</group>
+				</form>
+			</field>
+
+        </record>
+
+		<record id="map_customer_tree" model="ir.ui.view">
+            <field name="name">magento.customers.tree</field>
+            <field name="model">magento.customers</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree create="false" string="Magento Customer Mapping">
+					<field name="id"/>
+					<field name="cus_name"/>
+					<field name="oe_customer_id"/>
+					<field name="mag_customer_id"/>
+					<field name="mag_address_id"/>
+					<field name="created_by" readonly="1"/>
+					<field name="create_date" readonly="1"/>
+					<field name="write_date" readonly="1"/>
+				</tree>
+			</field>
+        </record>
+
+		<!-- Search View for Magento Customers  -->
+		<record id="magento_customers_search" model="ir.ui.view">
+			<field name="name">magento.customers.search</field>
+			<field name="model">magento.customers</field>
+			<field name="arch" type="xml">
+				<search string="MOB">
+					<field name="cus_name" filter_domain="[('cus_name','ilike',self)]"/>
+					<field name="oe_customer_id"/>
+					<field name="mag_customer_id"/>
+					<group expand="0" string="Group By">
+						<filter string="Created By" name="createby" domain="[]" context="{'group_by':'created_by'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record id="magento_customer_tree_action" model="ir.actions.act_window">
+            <field name="name">Magento Customer Mapping</field>
+            <field name="res_model">magento.customers</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="map_customer_tree"/>
+	        <field name="search_view_id" ref = "magento_customers_search"/>
+        </record>
+    </data>
+</odoo>

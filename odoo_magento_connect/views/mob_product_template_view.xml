@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+
+<odoo>
+	<data>
+
+        <!--~~======================== Template Mapping ======================~~~-->
+   		<record id="magento_product_template_form" model="ir.ui.view">
+            <field name="name">magento_product_template.form</field>
+            <field name="model">magento.product.template</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Template Mapping" create="false" edit="false">
+                	<group>
+						<field name="template_name" required="1" />
+						<field name="mage_product_id" readonly="1" />
+						<field name="erp_template_id" readonly="1"/>
+						<field name="is_variants" readonly="1"/>
+					</group>
+				</form>
+			</field>
+
+        </record>
+
+		<record id="magento_product_template_tree" model="ir.ui.view">
+            <field name="name">magento_product_template.tree</field>
+            <field name="model">magento.product.template</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree create="false" string="Magento Product Templates"  decoration-danger="need_sync=='Yes'" >
+					<field name="id"/>
+					<field name="template_name"/>
+					<field name="erp_template_id"/>
+					<field name="mage_product_id"/>
+					<field name="base_price"/>
+					<field name="is_variants"/>
+					<field name="created_by" readonly="1"/>
+					<field name="create_date" readonly="1"/>
+					<field name="write_date" readonly="1"/>
+					<field name="need_sync"/>
+				</tree>
+			</field>
+        </record>
+
+        <!-- Search View for Magento Product Template -->
+	    <record id="magento_product_template_search" model="ir.ui.view">
+	            <field name="name">magento_product_template.search</field>
+	            <field name="model">magento.product.template</field>
+	            <field name="arch" type="xml">
+	                <search string="MOB">
+	                    <field name="template_name" filter_domain="[('template_name','ilike',self)]"/>
+	                    <field name="erp_template_id"/>
+	                    <field name="mage_product_id"/>
+	                    <filter name="variants" string="Configurable Products" icon="terp-project" domain="[('is_variants','=','True')]" />
+	                    <group expand="0" string="Group By">
+	                        <filter string="Is Variants" name="isvariants" domain="[]" context="{'group_by':'is_variants'}" />
+	                        <filter string="Need Sync" name="needsync" domain="[]" context="{'group_by':'need_sync'}" />
+	                        <filter string="Created By" name="createby" domain="[]" context="{'group_by':'created_by'}" />
+	                    </group>
+	                </search>
+	            </field>
+	    </record>
+
+		<record id="magento_product_template_action" model="ir.actions.act_window">
+            <field name="name">Magento Product Template</field>
+            <field name="res_model">magento.product.template</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="magento_product_template_tree"/>
+	        <field name="search_view_id" ref = "magento_product_template_search"/>
+	        <field name="context">{"search_default_variants":True}</field>
+        </record>
+
+    </data>
+</odoo>

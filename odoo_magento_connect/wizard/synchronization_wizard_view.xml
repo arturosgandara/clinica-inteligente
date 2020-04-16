@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+
+<odoo>
+    <data>
+
+    <record id="id_synchronization_wizard_form" model="ir.ui.view">
+            <field name="name">Synchronization Wizard</field>
+            <field name="model">synchronization.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Sync">
+                    <group col='4'  colspan="2">
+                        <field name="action"/>
+                        <label for="action" string=" "/>
+                    </group>
+                    <footer>
+                        <button name="start_category_synchronization"
+                                string="Synchronize Now"
+                                type="object"
+                                class="oe_highlight"
+                                invisible= "not context.get('All') == True"/>
+                        <button name="start_product_synchronization"
+                                string="Synchronize Now"
+                                type="object"
+                                class="oe_highlight"
+                                invisible="not context.get('check') == False"/>
+                        <button name="start_product_synchronization_mapping"
+                                string="Synchronize Now"
+                                type="object"
+                                class="oe_highlight"
+                                invisible="not context.get('mapping') == False"/>
+                        <button name="start_category_synchronization_mapping"
+                                string="Synchronize Now"
+                                type="object"
+                                class="oe_highlight"
+                                invisible="not context.get('mapping_categ') == False"/>
+                        or
+                        <button string="Cancel" class='oe_link' special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    <record id="id_magento_action" model="ir.actions.act_window">
+        <field name="name">Synchronization Categories</field>
+        <field name="res_model">synchronization.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="id_synchronization_wizard_form"/>
+        <field name="target">new</field>
+        <field name="context">{'All':True}</field>
+    </record>
+
+    <record id="id_magento_product_action" model="ir.actions.act_window">
+        <field name="name">Synchronization Products</field>
+        <field name="res_model">synchronization.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="id_synchronization_wizard_form"/>
+        <field name="target">new</field>
+        <field name="context">{'check':False}</field>
+    </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+
+<odoo>
+	<data>
+
+		<record id="odoo_magento_connect_view_picking_form" model="ir.ui.view">
+			<field name="name">stock.picking.form</field>
+			<field name="model">stock.picking</field>
+			<field name="inherit_id" ref="stock.view_picking_form" />
+			<field name="arch" type="xml">
+				<field name="carrier_tracking_ref" position="replace">
+					<field name="carrier_code" required='True'/>
+					<field name="carrier_tracking_ref" readonly="False"/>
+				</field>
+				<field name="origin" position="after">
+					<field name="magento_shipment" readonly="1"/>
+				</field>
+				<field name="carrier_tracking_ref" position="after">
+					<button colspan="1" name="action_sync_tracking_no" string="Sync Tracking No on Magento" type="object" class="oe_highlight" attrs="{'invisible': [('magento_shipment','=', False)]}"/>
+				</field>
+			</field>
+		</record>
+
+	</data>
+</odoo>

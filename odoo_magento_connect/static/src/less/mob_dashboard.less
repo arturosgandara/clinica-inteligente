@@ -1,0 +1,238 @@
+/* Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) */
+/* See LICENSE file for full copyright and licensing details. */
+.o_kanban_view.o_kanban_dashboard.o_mob_kanban {
+    @mob-table-spacing: 10px;
+    .o_kanban_record {
+        // @media (min-width: @screen-sm-min) {
+        //     min-width: 450px;
+        // }
+
+        .oe_kanban_action_button {
+            margin-bottom: 5px;
+        }
+
+        .o_kanban_card_settings {
+            padding-top: @odoo-horizontal-padding/2;
+            padding-bottom: @odoo-horizontal-padding/2;
+
+            border-top: 1px solid;
+            border-color: @odoo-brand-lightsecondary;
+        }
+        .o_dashboard_star {
+            font-size: 12px;
+
+            &.fa-star-o {
+                color: @odoo-main-color-muted;
+                &:hover {
+                    color: gold;
+                }
+            }
+            &.fa-star {
+                color: gold;
+            }
+        }
+
+        .o_kanban_card_content {
+            // give space for graph section at the bottom
+            margin-bottom: 75px;
+            min-height: 120px;
+        }
+
+        .o_kanban_graph_section {
+            .o-position-absolute(auto, 0, 0, 0);
+            .o_graph_linechart {
+                > svg {
+                    height: 75px;
+
+                    // X axis
+                    g.nv-x.nv-axis {
+                        transform: translateY(50px);
+
+                        g.nv-axisMaxMin {
+                            display: none;
+                        }
+                        g.tick.major {
+
+                            line {
+                                display: none;
+                            }
+                        }
+                    }
+
+
+                    g.nv-linesWrap {
+                        g.nv-group.nv-series-0 {
+                            fill-opacity: 0.3 !important;
+                            fill: @odoo-brand-primary !important;
+                            stroke: @odoo-brand-primary !important;
+
+                            .nv-point {
+                                visibility: hidden;
+                                r: 3;
+                                stroke: @odoo-brand-primary !important;
+                                fill: white;
+                                stroke-width: 2;
+                            }
+                            .nv-point:nth-child(5n+1) {
+                                visibility: visible;
+                                fill-opacity: .95 !important;
+                                stroke-opacity: .95 !important;
+                            }
+                        }
+                    }
+                }
+            }
+            .o_graph_barchart {
+                > svg {
+                    height: 75px;
+                    overflow: visible;
+                    g.nv-barsWrap {
+                        g.nv-group.nv-series-0 {
+                            g.past {
+                                opacity: 0.5;
+                                fill: @odoo-brand-primary !important;
+                            }
+                            g.future {
+                                opacity: 0.5;
+                                fill: @odoo-brand-optional !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .o_invisible .o_kanban_graph_section {
+            display: none; // This fix a bug on firefox
+        }
+    }
+
+    &.o_kanban_grouped .o_kanban_record {
+        min-width: inherit;
+    }
+
+    .o_mob_dashboard {
+        margin: (0 - @o-kanban-record-margin) (@o-kanban-record-margin - @odoo-horizontal-padding) @o-kanban-record-margin;
+        .o-flex(1, 0, 100%);
+        padding: 10px (@odoo-horizontal-padding - @mob-table-spacing);
+
+        background-color: @dashboard-bg-color;
+        position: relative;
+
+        .o_welcome_message {
+            background-color:white;
+            padding: 20px;
+            width: 100%;
+            .o-position-absolute(@left: 0, @top: 0);
+            .o-flex-display();
+            .o-justify-content(center);
+
+            .o_welcome_image {
+                padding: 20px;
+            }
+            .o_welcome_content > a {
+                color: white;
+                display: inline-block;
+            }
+        }
+
+
+    > div {
+            display: inline-block;
+            vertical-align: top;
+            // @media (min-width: @screen-sm-min) {
+            //     width: 50%;
+            // }
+            .o_main2 {
+                        background-color: #21b799;
+                        &:hover {
+                            background-color: darken(#21b799, 10%);
+                        }
+                        a {
+                            color: white;
+                        }
+            }
+
+            > table {
+                margin-bottom: 0;
+                table-layout: fixed;
+                border-spacing: @mob-table-spacing 0px;
+                border-collapse: separate;
+
+                > tbody > tr > td {
+                    vertical-align: middle;
+                    text-align: center;
+                    border-top: 1px solid @dashboard-bg-color;
+                    width: 25%;
+
+                    height: 33px;
+
+                    span {
+                        display: inline;
+                    }
+
+                    a:hover {
+                        text-decoration: none;
+                    }
+
+                    &.o_main {
+                        background-color: #2179b7;
+                        &:hover {
+                            background-color: darken(#2179b7, 10%);
+                        }
+                        a {
+                            color: white;
+                        }
+                    }
+                    &.o_warning {
+                        background-color: orange;
+                        &:hover {
+                            background-color: darken(orange, 10%);
+                        }
+                        a {
+                            color: white;
+                        }
+                    }
+                    &.o_secondary {
+                        background-color: @odoo-brand-lightsecondary;
+                        &:hover {
+                            background-color: darken(@odoo-brand-lightsecondary, 10%);
+                        }
+                        a {
+                            color: black;
+                        }
+                    }
+                    &.o_highlight, .o_highlight {
+                        font-size: 20px;
+                    }
+                    &.o_text {
+                        text-align: left;
+                    }
+                }
+
+            }
+        }
+    }
+    &.o_kanban_nocontent .o_mob_dashboard {
+        margin: 0;
+    }
+}
+.star:hover {
+    color: #D4AF37;
+}
+
+.wk_sync_button{
+  background-color: #a34a8b;
+  border-color:#a34a8b;
+}
+.wk_info {
+    font-family: -webkit-body;
+    color: #7A5487;
+    background: lavenderblush;
+    font-weight: 500;
+}
+.wk_separator {
+    text-align: -webkit-center;
+    background: #B8B9B9;
+    color: white;
+}

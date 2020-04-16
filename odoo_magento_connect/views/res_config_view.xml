@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+
+<odoo>
+    <data>
+
+        <record id="res_config_settings_view_mob_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.mob</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="1"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block o_not_app" data-string="Magento Odoo Bridge" data-key="odoo_magento_connect">
+                        <h2>Service Products</h2>
+                        <p class="text-muted" style="margin-left:5%">
+                          Select Service Type Product to be used by MOB,
+                          when exporting Order from Magento to Odoo.
+                        </p>
+                        <div class="row mt16 o_settings_container" id="mob_service">
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label string="Coupon Product" for="mob_coupon_product"/>
+                                    <div class="text-muted">
+                                        Product used coupon order line
+                                    </div>
+                                    <div class="text-muted">
+                                        <field name="mob_coupon_product"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <label string="Discount Product" for="mob_discount_product"/>
+                                    <div class="text-muted">
+                                        Product used discount order line
+                                    </div>
+                                    <div class="text-muted">
+                                        <field name="mob_discount_product"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>Magento Sales Order</h2>
+                        <p class="text-muted" style="margin-left:5%">
+                          Default Configuration For Sale Order used by MOB,
+                          when exporting Sale Order from Magento to Odoo.
+                        </p>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label string="Magento Payment Term" for="mob_payment_term"/>
+                                    <div class="text-muted">
+                                        Payment term used in magento order
+                                    </div>
+                                    <div class="text-muted">
+                                        <field name="mob_payment_term"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <label string="Magento Sales Team" for="mob_sales_team"/>
+                                    <div class="text-muted">
+                                        Sales team used for magento order
+                                    </div>
+                                    <div class="text-muted">
+                                        <field name="mob_sales_team"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <label string="Magento Salesperson" for="mob_sales_person"/>
+                                    <div class="text-muted">
+                                        Salesperson used for magento order
+                                    </div>
+                                    <div class="text-muted">
+                                        <field name="mob_sales_person"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>Sales Order Operation</h2>
+                        <p class="text-muted" style="margin-left:5%">
+                            Default Configuration used by MOB,
+                            Which enables to do Sale Order Opreartion from Odoo to Magento.
+                        </p>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="mob_sale_order_invoice"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label string="Invoice Status" for="mob_sale_order_invoice"/>
+                                    <div class="text-muted">
+                                        enable for update invoice status at Magento
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="mob_sale_order_shipment"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label string="Shipment Status" for="mob_sale_order_shipment"/>
+                                    <div class="text-muted">
+                                        enable for update shipment status at Magento
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="mob_sale_order_cancel"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label string="Cancel Status" for="mob_sale_order_cancel"/>
+                                    <div class="text-muted">
+                                        enable for update cancel status at Magento
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="action_mob_config" model="ir.actions.act_window">
+            <field name="name">Settings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_id" ref="res_config_settings_view_mob_form"/>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+        </record>
+
+        <record id="res_config_settings_view_form_inherit_mob_bridge" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.mbo.bridge</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="odoo_magento_connect.res_config_settings_view_mob_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@data-key='odoo_magento_connect']" position="attributes">
+                    <attribute name="class">app_settings_block</attribute>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+
+<odoo>
+    <data>
+        <!--     Bridge Menu      -->
+        <menuitem id="magento_parent_menu"
+            name="Magento Odoo Bridge"
+            groups="group_magento_openerp"
+            web_icon="odoo_magento_connect,static/description/icon.png"/>
+
+        <menuitem  id="menu_magento_dash"
+            name="Dashboard"
+            parent="odoo_magento_connect.magento_parent_menu"
+            action="odoo_magento_connect.open_mob_dashboard_kanban"
+            sequence="1"/>
+
+        <menuitem  id="menu_mapping_id"
+            name="Mapping"
+            parent="odoo_magento_connect.magento_parent_menu"
+            sequence="2"/>
+        <menuitem  id="mapping_id1"
+            name="Region Mapping"
+            parent="odoo_magento_connect.menu_mapping_id"
+            action="odoo_magento_connect.magento_region_tree_action"
+            sequence="1"/>
+        <menuitem  id="mapping_id2"
+            name="Category Mapping"
+            parent="odoo_magento_connect.menu_mapping_id"
+            action="odoo_magento_connect.magento_category_tree_action"
+            sequence="2"/>
+        <menuitem  id="mapping_id3"
+            name="Product Attribute"
+            parent="odoo_magento_connect.menu_mapping_id"
+            action="odoo_magento_connect.magento_product_attribute_action"
+            sequence="3"/>
+        <menuitem  id="mapping_id4"
+            name="Product Attribute Value"
+            parent="odoo_magento_connect.menu_mapping_id"
+            action="odoo_magento_connect.magento_product_attribute_value_action"
+            sequence="4"/>
+        <menuitem  id="mapping_id5"
+            name="Product Template Mapping"
+            parent="odoo_magento_connect.menu_mapping_id"
+            action="odoo_magento_connect.magento_product_template_action"
+            sequence="5"/>
+        <menuitem  id="mapping_id6"
+            name="Product Mapping"
+            parent="odoo_magento_connect.menu_mapping_id"
+            action="odoo_magento_connect.magento_product_tree_action"
+            sequence="6"/>
+        <menuitem  id="mapping_id7"
+            name="Customer Mapping"
+            parent="odoo_magento_connect.menu_mapping_id"
+            action="odoo_magento_connect.magento_customer_tree_action"
+            sequence="7"/>
+        <menuitem id="mapping_id8"
+            name="Sales Order Mapping"
+            parent="odoo_magento_connect.menu_mapping_id"
+            action="odoo_magento_connect.magento_order_tree_action"
+            sequence="8"/>
+
+        <menuitem  id="id_synchro"
+            name="History"
+            parent="odoo_magento_connect.magento_parent_menu"
+            sequence="3" />
+        <menuitem  id="sync_history"
+            name="Synchronisation History"
+            parent="odoo_magento_connect.id_synchro"
+            action="odoo_magento_connect.magento_sync_history_action"/>
+
+        <menuitem  id="menu_magento_id1"
+            name="Configuration"
+            parent="odoo_magento_connect.magento_parent_menu"
+            sequence="4"/>
+        <menuitem id="menu_mob_config"
+            name="Settings"
+            parent="odoo_magento_connect.menu_magento_id1"
+            sequence="1"
+            action="odoo_magento_connect.action_mob_config"/>
+        <menuitem  id="mag_id1"
+            name="Magento Connection"
+            parent="odoo_magento_connect.menu_magento_id1"
+            action="odoo_magento_connect.magento_configure_tree_action"
+            sequence="2"/>
+        <menuitem  id="product_id3"
+            name="Magento Attribute Sets"
+            parent="odoo_magento_connect.menu_magento_id1"
+            action="odoo_magento_connect.magento_attribute_set_action"
+            sequence="3"/>
+    </data>
+</odoo>

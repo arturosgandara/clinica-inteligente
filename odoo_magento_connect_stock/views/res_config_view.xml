@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+
+<odoo>
+    <data>
+        <record id="res_config_settings_view_mob_stock_form" model="ir.ui.view">
+            <field name="name">MOB Stock Settings</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="odoo_magento_connect.res_config_settings_view_mob_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='mob_service']" position="after">
+                    <h2>Stock Synchronization</h2>
+                    <p class="text-muted" style="margin-left:5%">
+                      Select preferred field for product quantity synchronization.
+                    </p>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane" />
+                            <div class="o_setting_right_pane">
+                                <label string="MOB Stock Based On" for="mob_stock_action" />
+                                <div class="text-muted">
+                                    Product quantity will sync according to
+                                    selected option
+                                    Quantity on hand/Forecast Quantity Field.
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field name="mob_stock_action" class="o_light_label" widget="radio"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

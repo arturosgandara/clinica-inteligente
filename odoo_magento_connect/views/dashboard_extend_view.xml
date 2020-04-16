@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+
+<odoo>
+
+    <template id="mob_main_container">
+        <div class="o_onboarding_container collapse show">
+            <div class="o_onboarding classes">
+                <div class="o_onboarding_wrap">
+                    <div  class="o_mob_dashboard row">
+                        <div t-if="connrecs and connrecs['active'] != 0" class="col">
+                            <div class="o_welcome_image">
+                                <div style="float:left;margin-left:10px; margin-top:20px;color:#a34a8b">
+                                    <i class="fa fa-plug fa-5x"></i>
+                                </div>
+                                <div class="o_welcome_content" style="float:left;padding-right:4px;margin-left:20px;margin-top:-10px;color:#8e8f8f">
+                                    <h1>Magento Odoo Bridge</h1>
+                                    <h4>Connect your odoo with magento !!!</h4>
+                                    <h5>Start managing your magento and odoo sales,</h5>
+                                    <h5> accounting and inventory at one place.</h5>
+                                    <div >
+                                    <table>
+                                        <tr style="height:30px;">
+                                            <td t-if="(connrecs and connrecs['totalcon'] != 0)" class="o_main2" style="text-align: center;width:200px">
+                                                <a data-reload-on-close="true"
+                                                    type="action" role="button"
+                                                    data-method="open_bulk_synchronization"
+                                                    data-model="mob.dashboard">
+                                                    <span style="cursor:pointer;color:white;">
+                                                    Bulk Synchronization</span>
+                                                </a>
+                                            </td>
+                                            <td t-if="(connrecs and connrecs['totalcon'] == 0)" class="o_main2" style="margin-left:250px">
+                                                <a  data-reload-on-close="true"
+                                                    type="action" role="button"
+                                                    data-method="open_bulk_synchronization"
+                                                    data-model="mob.dashboard"
+                                                    name="odoo_magento_connect.magento_configure_tree_action"
+                                                    data-extra="new">
+                                                        Configure Connection
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div t-if="connrecs and connrecs['active'] != 0" class="col" style="margin-top:-7px;" >
+                            <table class="hidden-xs table table-condensed">
+                                <tr>
+                                    <td t-if="connrecs and connrecs['success'] != false" class="o_main" style="font-size:15px;background-color:#3c763d">
+                                        <a data-reload-on-close="true"
+                                            type="action" role="button"
+                                            data-method="open_mob_success_connection"
+                                            data-model="mob.dashboard"
+                                            style="cursor:pointer;color:white;">
+                                            <i class="fa fa-smile-o" style="font-size:2em"></i><br/>
+                                                Connected
+                                            <i style="padding-left:5px" class="fa fa-thumbs-up"></i>
+                                        </a>
+                                    </td>
+                                    <td t-if="connrecs and connrecs['success'] == false"
+                                        class="o_main"
+                                        style="font-size:15px;background-color:#a94442">
+                                        <a data-reload-on-close="true"
+                                            type="action" role="button"
+                                            context="{'search_default_error':1}"
+                                            data-method="open_mob_error_connection"
+                                            data-model="mob.dashboard"
+                                            style="cursor:pointer;color:white;">
+                                            <i class="fa fa-frown-o" style="font-size:2em"></i><br/>
+                                                Not Connected
+                                            <i style="padding-left:5px" class="fa fa-thumbs-down"></i>
+                                        </a>
+                                    </td>
+                                    <td class="o_main" title="User Manual" style="font-size:15px">
+                                        <a href="https://webkul.com/blog/magento-openerp-bridge/" target="_blank">
+                                        <i class="fa fa-book" style="font-size:1.5em"></i><br/>
+                                            User Guide
+                                        </a>
+                                    </td>
+                                    <td class="o_main" style="font-size:15px">
+                                        <a href="https://store.webkul.com/Magento-OpenERP-Bridge.html#tabreviews" target="_blank">
+                                        <i class="fa fa-star star"></i>
+                                        <i class="fa fa-star star"></i>
+                                        <i class="fa fa-star star"></i>
+                                        <i class="fa fa-star star"></i>
+                                        <i class="fa fa-star star"></i><br/>
+                                            Rate &amp; Review
+                                        <i style="padding-left:5px" class="fa fa-thumbs-up"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="o_main" title="Webkul Support" rowspan="2" style="font-size:15px">
+                                        <a href="https://webkul.uvdesk.com/en/customer/create-ticket/" target="_blank">
+                                            Need Assistance
+                                        </a>
+                                    </td>
+                                    <td class="o_main" title="MOB Addons" rowspan="2" style="font-size:15px">
+                                        <a href="https://store.webkul.com/Magento-Extensions/ERP.html" target="_blank">
+                                            MOB Extensions
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div t-if="connrecs and connrecs['active'] == 0" class="" style="color:#8f9090;margin: 0 auto">
+                            <div class="o_welcome_image" style="float:left;color:#875a7b;margin-right:20px">
+                                <i class="fa fa-smile-o fa-10x"></i>
+                            </div>
+                            <div class="" style="float:right;">
+                                <h2>Hi there!</h2>
+                                <h3>Getting Started with Magento Odoo Bridge</h3>
+                                <h4>
+                                Currently no magento active connections found, kindly configure one !!
+                                </h4>
+                                <a data-reload-on-close="true"
+                                    type="action" role="button"
+                                    class="btn btn-primary new_conn"
+                                    data-method="create_new_connection"
+                                    data-model="mob.dashboard"
+                                    style="cursor:pointer;color:white;">
+                                        Configure Connection
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="magento_bridge_dashboard_onboarding_panel" name="odoo_magento_connect.dashboard.onboarding.panel">
+        <t t-call="odoo_magento_connect.mob_main_container"/>
+    </template>
+
+
+</odoo>
